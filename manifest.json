@@ -1,0 +1,13 @@
+{
+  "short_name": "todo",
+  "start_url": "/",
+  "theme_color": "#eeffee",
+  "background_color": "#eeffee",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icons/small.svg",
+      "sizes": "any"
+    }
+  ]
+}
