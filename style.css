@@ -16,8 +16,8 @@ li,
 legend {
   list-style-type: none;
   padding: 0.2em 0.5em;
-  background-color: #dddddd;
+  background-color: #ffdddd;
 }
 li:nth-of-type(even) {
-  background-color: inherit;
+  background-color: #ddddff;
 }
