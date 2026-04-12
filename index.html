@@ -9,25 +9,22 @@
 	<link rel="icon" href="icons/small.svg" />
   </head>
   <body>
-    <nav>
+    <!-- <nav>
       <button class="todo-button" onclick="toggleTabs('date-todo')">TODO</button>
       <button class="log-button" onclick="toggleTabs('todo-log')">LOG</button>
-    </nav>
-    <main>
-
-      <section id="date-todo">
-        <h1>TODO</h1>
+    </nav> -->
+      <main>
+      <section class="date-todo">
         <form id="date-search">
           <fieldset>
             <input type="date" id="date" name="date" required />
-            <button type="submit" id="search-submit">SEARCH</button>
           </fieldset>
         </form>
-        <section id="todo-list">
+        <section class="todo-list">
           <ul>
             <form id="add-todo">
               <fieldset id="todo-list-elements">
-                <li class="add-todo-li">
+                <li class="add-todo-li, adder">
                   <input type="text" id="add-todo-text" name="add-todo-text"/>
                   <button type="submit" id="add-todo-submit">+</button>
                 </li>
@@ -37,14 +34,13 @@
         </section>
       </section>
 
-      <section id="todo-log">
-        <h1>LOG</h1>
+      <section class="todo-log">
         <section id="weekly">
-          <h2>WEEKLY</h2>
+          <h1>WEEKLY TODOS</h1>
           <ul>
             <form id="add-weekly">
               <fieldset id="weekly-elements">
-                <li class="add-weekly-li">
+                <li class="add-weekly-li, adder">
                   <input type="text" id="add-weekly-text" name="add-weekly-text"/>
                   <input type="checkbox" id="mon_add" name="mon_add"/><label for="mon_add">M</label>
                   <input type="checkbox" id="tue_add" name="tue_add"/><label for="tue_add">T</label>
@@ -59,49 +55,10 @@
             </form>
           </ul>
         </section>
-        <section id="monthly">
-          <h2>MONTHLY</h2>
-          <ul>
-            <form id="add-monthly">
-              <fieldset id="monthly-list-elements">
-                <li class="add-monthly-li">
-                  <input type="text" name="text" id="add-monthly-text" name="add-monthly-text"/>
-                  <input type="checkbox" id="jan_add" name="jan_add"/><label for="jan_add">J</label>
-                  <input type="checkbox" id="feb_add" name="feb_add"/><label for="feb_add">F</label>
-                  <input type="checkbox" id="mar_add" name="mar_add"/><label for="mar_add">M</label>
-                  <input type="checkbox" id="apr_add" name="apr_add"/><label for="apr_add">A</label>
-                  <input type="checkbox" id="may_add" name="may_add"/><label for="may_add">M</label>
-                  <input type="checkbox" id="jun_add" name="jun_add"/><label for="jun_add">J</label>
-                  <input type="checkbox" id="jul_add" name="jul_add"/><label for="jul_add">J</label>
-                  <input type="checkbox" id="aug_add" name="aug_add"/><label for="aug_add">A</label>
-                  <input type="checkbox" id="sep_add" name="sep_add"/><label for="sep_add">S</label>
-                  <input type="checkbox" id="oct_add" name="pct_add"/><label for="oct_add">O</label>
-                  <input type="checkbox" id="nov_add" name="nov_add"/><label for="nov_add">N</label>
-                  <input type="checkbox" id="dec_add" name="dec_add"/><label for="dec_add">D</label>
-                  <button type="submit" id="add-monthly-submit">+</button>
-                </li>
-                <li class="monthly-li">
-                  <label id="monthly_n">[MONTHLY_n TEXT]</label>
-                  <input type="checkbox" id="jan_n" name="jan_n"/><label for="jan_n">J</label>
-                  <input type="checkbox" id="feb_n" name="feb_n"/><label for="feb_n">F</label>
-                  <input type="checkbox" id="mar_n" name="mar_n"/><label for="mar_n">M</label>
-                  <input type="checkbox" id="apr_n" name="apr_n"/><label for="apr_n">A</label>
-                  <input type="checkbox" id="may_n" name="may_n"/><label for="may_n">M</label>
-                  <input type="checkbox" id="jun_n" name="jun_n"/><label for="jun_n">J</label>
-                  <input type="checkbox" id="jul_n" name="jul_n"/><label for="jul_n">J</label>
-                  <input type="checkbox" id="aug_n" name="aug_n"/><label for="aug_n">A</label>
-                  <input type="checkbox" id="sep_n" name="sep_n"/><label for="sep_n">S</label>
-                  <input type="checkbox" id="oct_n" name="pct_n"/><label for="oct_n">O</label>
-                  <input type="checkbox" id="nov_n" name="nov_n"/><label for="nov_n">N</label>
-                  <input type="checkbox" id="dec_n" name="dec_n"/><label for="dec_n">D</label>
-                  <button id="monthly-edit_n">EDIT</button>
-                </li>
-              </fieldset>
-            </form>
-          </ul>
-        </section>
+        <!-- <section id="monthly"></section> -->
       </section>
     </main>
+
     <script src="app.js" defer></script>
     <script>
 		if ("serviceWorker" in navigator) {

@@ -1,4 +1,4 @@
-var tabs = ['date-todo', 'todo-log'];
+//const tabs: readonly string[] = ['date-todo', 'todo-log'];
 var dateSearchForm = document.getElementById("date-search");
 var dateInput = document.getElementById("date");
 var date = "";
@@ -14,11 +14,11 @@ var addMonthlyForm = document.getElementById("add-monthly");
 // Add the storage key as an app-wide constant
 var STORAGE_KEY = "todo";
 // Listen to form submissions.
-dateSearchForm.addEventListener("submit", searchDate);
+dateSearchForm.addEventListener("change", searchDate);
 addTODOForm.addEventListener("submit", addTODO);
 addWeeklyForm.addEventListener("submit", addWeekly);
 function startup() {
-    toggleTabs('date-todo');
+    //toggleTabs('date-todo');
     dateInput.valueAsDate = new Date();
     searchDate();
     renderWeeklies();
@@ -46,18 +46,13 @@ function addTODO(event) {
         renderTODOsFromDate(date);
     }
 }
-function toggleTabs(toggled_tab) {
-    for (var _i = 0, tabs_1 = tabs; _i < tabs_1.length; _i++) {
-        var tab = tabs_1[_i];
-        var t = document.getElementById(tab);
-        if (toggled_tab === tab) {
-            t.style.display = "block";
-        }
-        else {
-            t.style.display = "none";
-        }
-    }
-}
+/*function toggleTabs(toggled_tab: string) {
+  for(const tab of tabs) {
+    let t:HTMLElement = <HTMLElement>document.getElementsByClassName(tab)[0];
+    if(toggled_tab === tab) { t.style.display = "block"; }
+    else { t.style.display = "none"; }
+  }
+}*/
 function getAllStoredTODOs() {
     var data = window.localStorage.getItem(STORAGE_KEY);
     var todos = data ? JSON.parse(data) : {};

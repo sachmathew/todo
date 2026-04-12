@@ -1,23 +1,44 @@
+* {
+  box-sizing: border-box;
+  font-family: "monospace";
+}
+
 body {
-  margin: 1vh 1vw;
-  background-color: #eeeeee;
+  background-color: #ffffff;
 }
-ul,
-fieldset,
-legend {
-  border: 1px solid;
-  background-color: white;
-}
-ul {
+
+form, fieldset, section{
+  margin: 0;
   padding: 0;
-  font-family: monospace;
+  border: none;
 }
-li,
-legend {
-  list-style-type: none;
-  padding: 0.2em 0.5em;
-  background-color: #ffdddd;
+
+#date, h1 {
+  font-size: 2em;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
-li:nth-of-type(even) {
-  background-color: #ddddff;
+
+ul { padding: 0; }
+li{ list-style-type: none; }
+li:nth-of-type(odd):not(.adder) { background-color: #ffdddd; }
+li:nth-of-type(even):not(.adder) { background-color: #ddddff; }
+
+@media only screen and (max-width: 768px) {
+  .date-todo, .todo-log {
+    width: 100%;
+    display: block;
+  }
+} 
+
+@media only screen and (min-width: 768px) {
+  .date-todo, .todo-log {
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+  }
 }

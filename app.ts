@@ -1,4 +1,4 @@
-const tabs: readonly string[] = ['date-todo', 'todo-log'];
+//const tabs: readonly string[] = ['date-todo', 'todo-log'];
 
 const dateSearchForm: HTMLFormElement = <HTMLFormElement>document.getElementById("date-search");
 const dateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
@@ -21,7 +21,7 @@ const addMonthlyForm: HTMLFormElement = <HTMLFormElement>document.getElementById
 const STORAGE_KEY = "todo";
 
 // Listen to form submissions.
-dateSearchForm.addEventListener("submit", searchDate);
+dateSearchForm.addEventListener("change", searchDate);
 addTODOForm.addEventListener("submit", addTODO);
 addWeeklyForm.addEventListener("submit", addWeekly);
 
@@ -40,7 +40,7 @@ interface RecurringTODO {
 }
 
 function startup(){
-  toggleTabs('date-todo');
+  //toggleTabs('date-todo');
   dateInput.valueAsDate = new Date();
   searchDate();
   renderWeeklies();
@@ -65,13 +65,13 @@ function addTODO(event?: Event) {
   }
 }
 
-function toggleTabs(toggled_tab: string) {
+/*function toggleTabs(toggled_tab: string) {
   for(const tab of tabs) {
-    let t:HTMLElement = <HTMLElement>document.getElementById(tab);
+    let t:HTMLElement = <HTMLElement>document.getElementsByClassName(tab)[0];
     if(toggled_tab === tab) { t.style.display = "block"; } 
     else { t.style.display = "none"; }
   }
-}
+}*/
 
 function getAllStoredTODOs(): {[date: string]: TODO[];} {
   const data = window.localStorage.getItem(STORAGE_KEY);
