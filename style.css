@@ -1,12 +1,12 @@
 * {
   box-sizing: border-box;
   font-family: "monospace";
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: #ffffff;
-  margin: 0;
-  padding: 0;
 }
 
 form, fieldset, section{
@@ -20,12 +20,9 @@ form, fieldset, section{
   font-weight: bold;
   width: 100%;
   text-align: center;
-  margin: 0;
-  padding: 0;
   border: none;
 }
 
-ul { padding: 0; }
 li{ list-style-type: none; }
 li:nth-of-type(odd):not(.adder) { background-color: #ffdddd; }
 li:nth-of-type(even):not(.adder) { background-color: #ddddff; }
