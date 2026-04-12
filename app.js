@@ -1,4 +1,3 @@
-//const tabs: readonly string[] = ['date-todo', 'todo-log'];
 var dateSearchForm = document.getElementById("date-search");
 var dateInput = document.getElementById("date");
 var date = "";
@@ -18,7 +17,6 @@ dateSearchForm.addEventListener("change", searchDate);
 addTODOForm.addEventListener("submit", addTODO);
 addWeeklyForm.addEventListener("submit", addWeekly);
 function startup() {
-    //toggleTabs('date-todo');
     dateInput.valueAsDate = new Date();
     searchDate();
     renderWeeklies();
@@ -46,18 +44,9 @@ function addTODO(event) {
         renderTODOsFromDate(date);
     }
 }
-/*function toggleTabs(toggled_tab: string) {
-  for(const tab of tabs) {
-    let t:HTMLElement = <HTMLElement>document.getElementsByClassName(tab)[0];
-    if(toggled_tab === tab) { t.style.display = "block"; }
-    else { t.style.display = "none"; }
-  }
-}*/
 function getAllStoredTODOs() {
     var data = window.localStorage.getItem(STORAGE_KEY);
     var todos = data ? JSON.parse(data) : {};
-    //console.log("todos");
-    //console.dir(todos);
     return todos;
 }
 function renderTODOsFromDate(date) {
@@ -109,6 +98,7 @@ function renderTODO(todo) {
     todoLI.appendChild(label);
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = "X";
+    deleteButton.className = "right-button";
     deleteButton.onclick = function () {
         todoLI.remove();
         delete local_todos[todo.description];
@@ -187,8 +177,12 @@ function renderWeekly(description, days) {
     var dows = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
     var label = document.createElement("label");
     label.id = "weekly_".concat(n);
+    label.className = "list-text";
     label.textContent = description;
     weeklyItem.appendChild(label);
+    var inner_buttons = document.createElement("div");
+    inner_buttons.className = "inner-buttons";
+    weeklyItem.appendChild(inner_buttons);
     dows.forEach(function (dow) {
         var checkbox = document.createElement("input");
         checkbox.type = "checkbox";
@@ -196,20 +190,21 @@ function renderWeekly(description, days) {
         checkbox.name = "".concat(dow, "_").concat(n);
         checkbox.checked = days[dows.indexOf(dow)];
         checkbox.onchange = saveWeeklies;
-        weeklyItem.appendChild(checkbox);
+        inner_buttons.appendChild(checkbox);
         var dayLabel = document.createElement("label");
         dayLabel.htmlFor = "".concat(dow, "_").concat(n);
         dayLabel.textContent = dow.charAt(0).toUpperCase();
-        weeklyItem.appendChild(dayLabel);
+        inner_buttons.appendChild(dayLabel);
     });
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = "X";
+    deleteButton.className = "right-button";
     deleteButton.onclick = function () {
         weeklyItem.remove();
         weeklyItems.splice(weeklyItems.indexOf(weeklyItem), 1);
         saveWeeklies();
     };
-    weeklyItem.appendChild(deleteButton);
+    inner_buttons.appendChild(deleteButton);
     return weeklyItem;
 }
 function saveWeeklies() {

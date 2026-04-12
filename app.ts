@@ -1,5 +1,3 @@
-//const tabs: readonly string[] = ['date-todo', 'todo-log'];
-
 const dateSearchForm: HTMLFormElement = <HTMLFormElement>document.getElementById("date-search");
 const dateInput: HTMLInputElement = <HTMLInputElement>document.getElementById("date");
 let date:string = "";
@@ -40,7 +38,6 @@ interface RecurringTODO {
 }
 
 function startup(){
-  //toggleTabs('date-todo');
   dateInput.valueAsDate = new Date();
   searchDate();
   renderWeeklies();
@@ -65,19 +62,9 @@ function addTODO(event?: Event) {
   }
 }
 
-/*function toggleTabs(toggled_tab: string) {
-  for(const tab of tabs) {
-    let t:HTMLElement = <HTMLElement>document.getElementsByClassName(tab)[0];
-    if(toggled_tab === tab) { t.style.display = "block"; } 
-    else { t.style.display = "none"; }
-  }
-}*/
-
 function getAllStoredTODOs(): {[date: string]: TODO[];} {
   const data = window.localStorage.getItem(STORAGE_KEY);
   let todos: {[date: string]: TODO[];} = data ? JSON.parse(data) : {};
-  //console.log("todos");
-  //console.dir(todos);
   return todos;
 }
 
@@ -130,6 +117,7 @@ function renderTODO(todo: TODO): HTMLLIElement {
   todoLI.appendChild(label);
   const deleteButton: HTMLButtonElement = document.createElement("button");
   deleteButton.innerHTML = "X";
+  deleteButton.className = "right-button";
   deleteButton.onclick = function(){
     todoLI.remove();
     delete local_todos[todo.description];
@@ -210,8 +198,12 @@ function renderWeekly(description: string, days: boolean[]) {
   const dows = ["mon", "tue", "wed" ,"thu", "fri", "sat", "sun"];
   const label: HTMLLabelElement = document.createElement("label");
   label.id = `weekly_${n}`;
+  label.className = "list-text";
   label.textContent = description;
   weeklyItem.appendChild(label);
+  const inner_buttons: HTMLDivElement = document.createElement("div");
+  inner_buttons.className = "inner-buttons";
+  weeklyItem.appendChild(inner_buttons);
   dows.forEach((dow) => {
     const checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox"
@@ -219,20 +211,21 @@ function renderWeekly(description: string, days: boolean[]) {
     checkbox.name = `${dow}_${n}`;
     checkbox.checked = days[dows.indexOf(dow)];
     checkbox.onchange = saveWeeklies;
-    weeklyItem.appendChild(checkbox);
+    inner_buttons.appendChild(checkbox);
     const dayLabel: HTMLLabelElement = document.createElement("label");
     dayLabel.htmlFor = `${dow}_${n}`;
     dayLabel.textContent = dow.charAt(0).toUpperCase();
-    weeklyItem.appendChild(dayLabel);
+    inner_buttons.appendChild(dayLabel);
   });
   const deleteButton: HTMLButtonElement = document.createElement("button");
   deleteButton.innerHTML = "X";
+  deleteButton.className = "right-button";
   deleteButton.onclick = function(){
     weeklyItem.remove();
     weeklyItems.splice(weeklyItems.indexOf(weeklyItem), 1);
     saveWeeklies();
   }
-  weeklyItem.appendChild(deleteButton);
+  inner_buttons.appendChild(deleteButton);
   return weeklyItem;
 }
 

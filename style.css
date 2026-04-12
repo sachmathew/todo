@@ -5,6 +5,8 @@
 
 body {
   background-color: #ffffff;
+  margin: 0;
+  padding: 0;
 }
 
 form, fieldset, section{
@@ -27,11 +29,18 @@ ul { padding: 0; }
 li{ list-style-type: none; }
 li:nth-of-type(odd):not(.adder) { background-color: #ffdddd; }
 li:nth-of-type(even):not(.adder) { background-color: #ddddff; }
+.inner-buttons { align-items: center; }
+.right-button { float: right; }
 
 @media only screen and (max-width: 768px) {
   .date-todo, .todo-log {
     width: 100%;
     display: block;
+  }
+
+  .list-text, .inner-buttons {
+    display: block;
+    width: 100%;
   }
 } 
 
@@ -40,5 +49,10 @@ li:nth-of-type(even):not(.adder) { background-color: #ddddff; }
     width: 49%;
     display: inline-block;
     vertical-align: top;
+  }
+
+  .list-text, .inner-buttons {
+    display: inline-block;
+    width: 49%;
   }
 }
