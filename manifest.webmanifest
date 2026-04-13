@@ -1,8 +1,7 @@
 {
   "name": "todo",
-  "short_name": "todo",
   "scope": "/todo/",
-  "start_url": "/todo/",
+  "start_url": "/todo/index.html",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
   "display": "standalone",

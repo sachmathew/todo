@@ -1,5 +1,5 @@
 // The version of the cache.
-const VERSION = "v0.2";
+const VERSION = "v0.3";
 
 const SUPER_PATH = "/todo";
 const CACHE_NAME = `todo-${VERSION}`;
@@ -28,18 +28,16 @@ self.addEventListener("install", (event) => {
 // delete old caches on activate
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    (async () => {
-      const names = await caches.keys();
-      await Promise.all(
-        names.map((name) => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
+    caches.keys().then((keyList) =>
+      Promise.all(
+        keyList.map((key) => {
+          if (key === CACHE_NAME) {
+            return undefined;
           }
-          return undefined;
+          return caches.delete(key);
         }),
-      );
-      //await clients.claim();
-    }),
+      ),
+    ),
   );
 });
 
@@ -54,7 +52,7 @@ self.addEventListener("fetch", (event) => {
         return r;
       }
       const response = await fetch(event.request);
-      const cache = await caches.open(cacheName);
+      const cache = await caches.open(CACHE_NAME);
       console.log(`Caching new resource: ${event.request.url}`);
       cache.put(event.request, response.clone());
       return response;

@@ -50,7 +50,7 @@ function searchDate(event?: Event) {
 }
 
 function addTODO(event?: Event) {
-  console.log("add todo");
+  //console.log("add todo");
   if(event) { event.preventDefault(); }
   if (addTODOText.value) {
     let todos: {[date: string]: TODO[];} = getAllStoredTODOs();
@@ -87,7 +87,7 @@ function renderTODOsFromDate(date: string) {
   if (weeklies && weeklies.length > 0) {
     for(const weekly of weeklies) {
       const day_of_week = (new Date(date)).getDay();
-      console.log(`${weekly.description} ${day_of_week}: ${weekly.days[day_of_week]}`);
+      //console.log(`${weekly.description} ${day_of_week}: ${weekly.days[day_of_week]}`);
       if(weekly.days[day_of_week] && !(weekly.description in local_todos)) {
         const todoLI = renderTODO({
           description: weekly.description,
@@ -143,7 +143,7 @@ function saveTODOsFromCurrentDate() {
 }
 
 function addWeekly(event?: Event) {
-  console.log("add weekly");
+  //console.log("add weekly");
   if(event) { event.preventDefault(); }
   if (addWeeklyText.value) {
     let days: boolean[] = [
@@ -171,8 +171,8 @@ function storeNewWeekly(description: string, days: boolean[]) {
 function getAllStoredWeeklies() {
   const data = window.localStorage.getItem(STORAGE_KEY+"_weeklies");
   let weeklies = data ? JSON.parse(data) : [];
-  console.log("weeklies");
-  console.dir(weeklies);
+  //console.log("weeklies");
+  //console.dir(weeklies);
   return weeklies;
 }
 

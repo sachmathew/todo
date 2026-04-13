@@ -29,7 +29,7 @@ function searchDate(event) {
     renderTODOsFromDate(date);
 }
 function addTODO(event) {
-    console.log("add todo");
+    //console.log("add todo");
     if (event) {
         event.preventDefault();
     }
@@ -69,7 +69,7 @@ function renderTODOsFromDate(date) {
         for (var _a = 0, weeklies_1 = weeklies; _a < weeklies_1.length; _a++) {
             var weekly = weeklies_1[_a];
             var day_of_week = (new Date(date)).getDay();
-            console.log("".concat(weekly.description, " ").concat(day_of_week, ": ").concat(weekly.days[day_of_week]));
+            //console.log(`${weekly.description} ${day_of_week}: ${weekly.days[day_of_week]}`);
             if (weekly.days[day_of_week] && !(weekly.description in local_todos)) {
                 var todoLI = renderTODO({
                     description: weekly.description,
@@ -122,7 +122,7 @@ function saveTODOsFromCurrentDate() {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
 }
 function addWeekly(event) {
-    console.log("add weekly");
+    //console.log("add weekly");
     if (event) {
         event.preventDefault();
     }
@@ -152,8 +152,8 @@ function storeNewWeekly(description, days) {
 function getAllStoredWeeklies() {
     var data = window.localStorage.getItem(STORAGE_KEY + "_weeklies");
     var weeklies = data ? JSON.parse(data) : [];
-    console.log("weeklies");
-    console.dir(weeklies);
+    //console.log("weeklies");
+    //console.dir(weeklies);
     return weeklies;
 }
 function renderWeeklies() {
