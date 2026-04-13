@@ -51,20 +51,20 @@
       </section>
     </main>
 
-    <script src="app.js" defer></script>
+    <script src="/todo/app.js" defer></script>
     <script>
-		if (navigator.serviceWorker) {
-		  navigator.serviceWorker.register("/todo/sw.js", {scope: "/todo/"}).then(
-			(registration) => {
-			  console.log("Service worker registration successful:", registration);
-			},
-			(error) => {
-			  console.error(`Service worker registration failed: ${error}`);
-			},
-		  );
-		} else {
-		  console.error("Service workers are not supported.");
-		}
+      if (serviceWorker in navigator) {
+        navigator.serviceWorker.register("/todo/sw.js", {scope: "/todo/"}).then(
+        (registration) => {
+          console.log("Service worker registration successful:", registration);
+        },
+        (error) => {
+          console.error(`Service worker registration failed: ${error}`);
+        },
+        );
+      } else {
+        console.error("Service workers are not supported.");
+      }
     </script>
   </body>
 </html>

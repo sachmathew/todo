@@ -10,14 +10,16 @@ const APP_STATIC_RESOURCES = [
   `${SUPER_PATH}/index.html`,
   `${SUPER_PATH}/app.js`,
   `${SUPER_PATH}/style.css`,
-  `${SUPER_PATH}/icons/small.svg`,
+  `${SUPER_PATH}/icons/small.svg`
 ];
 
 // On install, cache the static resources
 self.addEventListener("install", (event) => {
+  console.log("Service Worker install");
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
+      console.log("Caching app");
       cache.addAll(APP_STATIC_RESOURCES);
     })(),
   );
@@ -36,31 +38,26 @@ self.addEventListener("activate", (event) => {
           return undefined;
         }),
       );
-      await clients.claim();
-    })(),
+      //await clients.claim();
+    }),
   );
 });
 
 // On fetch, intercept server requests
 // and respond with cached responses instead of going to network
 self.addEventListener("fetch", (event) => {
-  // As a single page app, direct app to always go to cached home page.
-  if (event.request.mode === "navigate") {
-    event.respondWith(caches.match("/"));
-    return;
-  }
-
-  // For all other requests, go to the cache first, and then the network.
   event.respondWith(
     (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      const cachedResponse = await cache.match(event.request.url);
-      if (cachedResponse) {
-        // Return the cached response if it's available.
-        return cachedResponse;
+      const r = await caches.match(event.request);
+      console.log(`Fetching resource: ${event.request.url}`);
+      if (r) {
+        return r;
       }
-      // If resource isn't in the cache, return a 404.
-      return new Response(null, { status: 404 });
+      const response = await fetch(event.request);
+      const cache = await caches.open(cacheName);
+      console.log(`Caching new resource: ${event.request.url}`);
+      cache.put(event.request, response.clone());
+      return response;
     })(),
   );
 });
