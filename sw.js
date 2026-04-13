@@ -1,16 +1,16 @@
 // The version of the cache.
-const VERSION = "v1";
+const VERSION = "v0.1";
 
-// The name of the cache
+const SUPER_PATH = "/todo";
 const CACHE_NAME = `todo-${VERSION}`;
 
 // The static resources that the app needs to function.
 const APP_STATIC_RESOURCES = [
-  "/",
-  "/index.html",
-  "/app.js",
-  "/style.css",
-  "/icons/wheel.svg",
+  `${SUPER_PATH}/`,
+  `${SUPER_PATH}/index.html`,
+  `${SUPER_PATH}/app.js`,
+  `${SUPER_PATH}/style.css`,
+  `${SUPER_PATH}/icons/small.svg`,
 ];
 
 // On install, cache the static resources

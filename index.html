@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="manifest" href="manifest.json" />
-	<link rel="icon" href="icons/small.svg" />
+    <linke rel="canonical" href="https://sachmathew.github.io/todo/" />
+    <linke rel="manifest" href="/todo/manifest.webmanifest" />
+    <link rel="stylesheet" href="/todo/style.css" />
+	  <link rel="icon" href="/todo/icons/small.svg" />
   </head>
   <body>
     <!-- <nav>
@@ -52,8 +53,8 @@
 
     <script src="app.js" defer></script>
     <script>
-		if ("serviceWorker" in navigator) {
-		  navigator.serviceWorker.register("sw.js").then(
+		if (navigator.serviceWorker) {
+		  navigator.serviceWorker.register("/todo/sw.js", {scope: "/todo/"}).then(
 			(registration) => {
 			  console.log("Service worker registration successful:", registration);
 			},
