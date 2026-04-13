@@ -53,7 +53,7 @@
 
     <script src="/todo/app.js" defer></script>
     <script>
-      if (serviceWorker in navigator) {
+      if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/todo/sw.js", {scope: "/todo/"}).then(
         (registration) => {
           console.log("Service worker registration successful:", registration);
