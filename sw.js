@@ -1,5 +1,5 @@
 // The version of the cache.
-const VERSION = "v0.1";
+const VERSION = "v0.2";
 
 const SUPER_PATH = "/todo";
 const CACHE_NAME = `todo-${VERSION}`;
