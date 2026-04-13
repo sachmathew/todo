@@ -1,5 +1,5 @@
 // The version of the cache.
-const VERSION = "v0.3";
+const VERSION = "v0.4";
 
 const SUPER_PATH = "/todo";
 const CACHE_NAME = `todo-${VERSION}`;
@@ -19,7 +19,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      console.log("Caching app");
+      console.log(`Caching app ${CACHE_NAME}`);
       cache.addAll(APP_STATIC_RESOURCES);
     })(),
   );
@@ -34,6 +34,7 @@ self.addEventListener("activate", (event) => {
           if (key === CACHE_NAME) {
             return undefined;
           }
+          console.log(`Deleting old cache: ${key}`);
           return caches.delete(key);
         }),
       ),
